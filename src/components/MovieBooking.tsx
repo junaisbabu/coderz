@@ -94,7 +94,7 @@ function MovieBooking() {
     <>
       <header className="bg-black/10">
         <div className="w-10/12 h-16 flex justify-end gap-4 items-center mx-auto">
-          {authState.username}
+          <h1 className="font-bold">👤 {authState.username}</h1>
           <button
             className="bg-black hover:bg-red-500 text-white py-1 px-2 rounded-md"
             onClick={logout}

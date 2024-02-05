@@ -1,3 +1,27 @@
+# Project Overview
+
+## Technologies Used:
+- `React.js`
+- `TypeScript`
+- `Tailwind CSS`
+- `Context API`
+- `Local Storage`
+
+## Features:
+- User can log in and log out.
+- User can use the test credentials for free to quickly check the application.
+- Implemented protected routes; without authentication, the user can't book a seat.
+- Utilized localStorage to persist user credentials across page reloads.
+- Strong validation for user authentication using HTML and JavaScript to enhance security.
+- Selected seats from a previous movie remain saved until the page is refreshed.
+- When the user clicks the 'Book' button, the selected seats will be occupied.
+- Once a user logs in, they cannot navigate to the login page again until they log out by clicking the logout button.
+
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

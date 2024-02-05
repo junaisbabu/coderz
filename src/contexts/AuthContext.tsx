@@ -28,6 +28,7 @@ const authReducer = (state: AuthState, action: AuthAction) => {
         ...state,
         isAuthenticated: false,
         username: "",
+        error: { username: "", password: "" },
       };
     case ERROR:
       return {
@@ -47,8 +48,12 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    navigate("/login");
-  }, []);
+    if (!state.isAuthenticated) {
+      navigate("/login");
+    } else {
+      navigate("/");
+    }
+  }, [navigate]);
 
   const validatePassword = (password: string): boolean => {
     // ! Regex for Password Validation:
@@ -91,8 +96,16 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     dispatch({ type: LOGOUT, payload: { username: "" } });
   };
 
+  const testCredential = () => {
+    let username = "Junais Babu";
+    let password = "Abc@$1239";
+    login(username, password);
+  };
+
   return (
-    <AuthContext.Provider value={{ authState: state, login, logout }}>
+    <AuthContext.Provider
+      value={{ authState: state, login, logout, testCredential }}
+    >
       {children}
     </AuthContext.Provider>
   );

@@ -4,6 +4,7 @@ import { useAuth } from "../contexts/AuthContext";
 function UserLogin() {
   const {
     login,
+    testCredential,
     authState: { isAuthenticated, error },
   } = useAuth();
 
@@ -54,15 +55,26 @@ function UserLogin() {
           </div>
           <div className="min-h-5">
             {isAuthenticated && (
-              <p className="text-green-500 font-semibold text-sm">
+              <p className="text-green-500 font-semibold text-sm text-center">
                 Successfully logged in
               </p>
             )}
           </div>
-          <button className="w-full font-semibold bg-black/80 hover:bg-black text-white p-2 rounded-md">
+          <button
+            className="w-full font-semibold bg-black/80 hover:bg-black text-white p-2 rounded-md"
+            type="submit"
+          >
             Login
           </button>
         </form>
+        <span className="block text-center font-semibold my-1">OR</span>
+        <button
+          className="w-full font-semibold border-2 border-black text-black hover:bg-black hover:text-white p-2 rounded-md"
+          type="button"
+          onClick={testCredential}
+        >
+          Use Test Credential
+        </button>
       </div>
     </div>
   );

@@ -20,4 +20,5 @@ export interface CreateContext {
   authState: AuthState;
   login: (username: string, password: string) => void;
   logout: () => void;
+  testCredential: () => void;
 }

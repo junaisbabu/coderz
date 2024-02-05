@@ -4,7 +4,7 @@ import { AuthAction, AuthState, CreateContext } from "../../types/auth";
 
 const initialState: AuthState = {
   isAuthenticated: false,
-  username: "",
+  username: localStorage.getItem("username") || "",
 };
 
 const LOGIN = "LOGIN";
@@ -48,10 +48,10 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!state.isAuthenticated) {
-      navigate("/login");
-    } else {
+    if (state.isAuthenticated || localStorage.getItem("username")?.length) {
       navigate("/");
+    } else {
+      navigate("/login");
     }
   }, [navigate]);
 
@@ -86,6 +86,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       });
     } else {
       setRedirect("/");
+      localStorage.setItem("username", username);
       dispatch({ type: LOGIN, payload: { username } });
       return;
     }
@@ -93,6 +94,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   const logout = () => {
     setRedirect("/login");
+    localStorage.removeItem("username");
     dispatch({ type: LOGOUT, payload: { username: "" } });
   };
 

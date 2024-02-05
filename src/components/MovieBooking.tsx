@@ -83,10 +83,10 @@ function MovieBooking() {
   }, [movieId]);
 
   useEffect(() => {
-    if (!authState.isAuthenticated) {
-      navigate("/login");
-    } else {
+    if (authState.isAuthenticated || localStorage.getItem("username")?.length) {
       navigate("/");
+    } else {
+      navigate("/login");
     }
   }, [navigate]);
 
